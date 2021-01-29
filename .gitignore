@@ -6,6 +6,9 @@
 !src/**
 !public/**
 
+# Except addon
+!addon/**
+
 # Except NodeJS
 !package.json
 

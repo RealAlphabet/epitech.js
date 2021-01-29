@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "My Epitech",
+    "version": "0.0.1",
+    "browser_action": {},
+    "background": {
+        "scripts": [ "background.js" ],
+        "persistent": false
+    },
+    "permissions": [
+        "https://login.microsoftonline.com/",
+        "http://127.0.0.1:8080/",
+        "cookies"
+    ]
+}

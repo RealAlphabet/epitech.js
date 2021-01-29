@@ -2,6 +2,68 @@ import { fetch } from './utils.js';
 
 
 ///////////////////////////////////////////////
+//  EPITECH API
+///////////////////////////////////////////////
+
+
+class EpitechAPI {
+
+    constructor(myIntra, myEpitech) {
+        this.myIntra    = myIntra;
+        this.myEpitech  = myEpitech;
+    }
+
+
+    //  FETCHERS
+
+    fetchMyEpitech(path) {
+        return fetch(`GET`, `https://api.epitest.eu${path}`, {
+            headers: {
+                authorization: `Bearer ${this.myEpitech}`
+            }
+        }).then(res => res.json());
+    }
+
+    fetchMyIntra(path, query = {}) {
+        query.format = 'json';
+        return fetch(`GET`, `https://intra.epitech.eu${path}`, {
+            query,
+            cookies: this.myIntra
+        }).then(res => res.json());
+    }
+
+
+    //  MY EPITECH
+
+    fetchMyEpitechModules() {
+        return this.fetchMyEpitech(`/me/2020`);
+    }
+
+    fetchMyEpitechModule(id) {
+        return this.fetchMyEpitech(`/me/details/${id}`);
+    }
+
+
+    //  INTRANET
+
+    fetchIntraMe() {
+        return this.fetchMyIntra(`/user/`);
+    }
+
+    fetchIntraCourses() {
+        return this.fetchMyIntra(`/course/filter/`);
+    }
+
+    fetchIntraPlanning() {
+        return this.fetchMyIntra(`/planning/load/`, {
+            start: "2021-01-01",
+            end: "2021-12-31"
+        });
+    }
+};
+
+
+///////////////////////////////////////////////
 //  OFFICE OAUTH
 ///////////////////////////////////////////////
 
@@ -66,66 +128,8 @@ function loginMyEpitech(cookie) {
 }
 
 
-///////////////////////////////////////////////
-//  EPITECH API
-///////////////////////////////////////////////
-
-
-export default class EpitechAPI {
-
-
-    //  LOGIN
-
-    async loginOffice365(cookie) {
-        this._myIntranet    = await loginMyIntra(cookie);
-        this._myEpitech     = await loginMyEpitech(cookie);
-    }
-
-
-    //  FETCHERS
-
-    fetchMyEpitech(path) {
-        return fetch(`GET`, `https://api.epitest.eu${path}`, {
-            headers: {
-                authorization: `Bearer ${this._myEpitech}`
-            }
-        }).then(res => res.json());
-    }
-
-    fetchMyIntra(path, query = {}) {
-        query.format = 'json';
-        return fetch(`GET`, `https://intra.epitech.eu${path}?format=json`, {
-            query,
-            cookies: this._myIntranet
-        }).then(res => res.json());
-    }
-
-
-    //  MY EPITECH
-
-    fetchMyEpitechModules() {
-        return fetchMyEpitech(`/me/2020`);
-    }
-
-    fetchMyEpitechModule(id) {
-        return fetchMyEpitech(`/me/details/${id}`);
-    }
-
-
-    //  INTRANET
-
-    fetchIntraMe() {
-        return fetchMyIntra(`/`);
-    }
-
-    fetchIntraCourses() {
-        return fetchMyIntra(`/course/filter`);
-    }
-
-    fetchIntraPlanning() {
-        return fetchMyIntra(`/planning/load`, {
-            start: "2021-01-01",
-            end: "2021-12-31"
-        });
-    }
-};
+export async function loginOffice365(cookie) {
+    let myIntra     = await loginMyIntra(cookie);
+    let myEpitech   = await loginMyEpitech(cookie);
+    return new EpitechAPI(myIntra, myEpitech);
+}

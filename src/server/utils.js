@@ -54,7 +54,7 @@ export function fetch(method, url, extra = {}) {
             //  COOKIE
 
             if (extra.cookies && res.headers['set-cookie'])
-                for (cookie of res.headers['set-cookie'])
+                for (let cookie of res.headers['set-cookie'])
                     extra.cookies.push(/^(.+?;)/.exec(cookie)[1]);
 
 

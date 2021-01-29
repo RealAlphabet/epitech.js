@@ -1,0 +1,16 @@
+# Ignore files
+*
+!*/
+
+# Except sources and public
+!src/**
+!public/**
+
+# Except NodeJS
+!package.json
+
+# Except Git
+!.gitignore
+
+# Ignore modules
+node_modules/

@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /
+
+User-Agent: 42
+Allow: /
+
+User-Agent: Elon Musk
+Allow: /shhh
+
+User-Agent: pepo
+Allow: /ak

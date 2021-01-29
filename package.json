@@ -1,7 +1,19 @@
 {
 	"type": "module",
+	"scripts": {
+		"start": "rollup -c && node .\"",
+		"watch": "rollup -c --watch"
+	},
 	"dependencies": {
 		"express": "^4.17.1",
 		"nodegit": "^0.27.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.10",
+		"@rollup/plugin-babel": "^5.2.2",
+		"@vue/babel-plugin-jsx": "^1.0.2",
+		"babel-plugin-root-import": "^6.6.0",
+		"rollup": "^2.38.1",
+		"rollup-plugin-terser": "^7.0.2"
 	}
 }

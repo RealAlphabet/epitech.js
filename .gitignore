@@ -11,6 +11,7 @@
 
 # Except NodeJS
 !package.json
+!rollup.config.js
 
 # Except Git
 !.gitignore

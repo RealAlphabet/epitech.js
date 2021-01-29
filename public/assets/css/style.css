@@ -1,0 +1,36 @@
+body {
+    font-family: 'Jetbrains Mono';
+    letter-spacing: -.08rem;
+}
+
+.welcome {
+    padding: 1rem;
+}
+
+.modules {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.module {
+    letter-spacing: -.05rem;
+    flex: 0 0 25%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.module-date {
+    color: #686868;
+}
+
+.success {
+    color: limegreen;
+}
+
+.warning {
+    color: orange;
+}
+
+.danger {
+    color: red;
+}

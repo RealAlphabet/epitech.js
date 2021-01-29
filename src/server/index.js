@@ -31,6 +31,14 @@ app.get('/api/me', function (req, res) {
     res.json(CONNECTIONS.get('guest'));
 });
 
+app.get('/api/marvin', function (req, res) {
+    let epitech = CONNECTIONS.get('guest').epitech;
+
+    epitech.fetchMyEpitechModules().then(modules => {
+        res.json(modules);
+    });
+});
+
 app.post('/api/auth', function (req, res) {
     loginOffice365(req.body.office365).then(epitech => {
         epitech.fetchIntraMe().then(user => {

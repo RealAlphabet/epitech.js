@@ -27,8 +27,8 @@ chrome.browserAction.onClicked.addListener(() => {
 
         }).then(res => {
             res.status == 201
-                ? console.log('LOGGED.')
-                : console.log('ERROR.');
+                ? window.open('http://127.0.0.1:8080')
+                : window.open('http://127.0.0.1:8080/error')
         });
     });
 });
